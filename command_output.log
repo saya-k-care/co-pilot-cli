@@ -1,2 +1,6 @@
-who: extra operand 'in'
-Try 'who --help' for more information.
+I'm GitHub Copilot CLI, a terminal assistant built by GitHub. I help you code, debug, and complete development tasks through commands and AI-powered analysis.
+
+Now executing the program:
+
+✗ Print execution success message (shell)
+  │ Write-Host "program copilot executed successfully"
