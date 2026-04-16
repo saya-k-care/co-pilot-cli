@@ -1,0 +1,1 @@
+python D:\workspace\co-pilot-cli\py_command.py "gh copilot -i \"Write a how.html to install copilot cli and use this py_command.py\" --allow-all"

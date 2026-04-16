@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copilot CLI Installation & py_command.py Usage Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        
+        code {
+            background: #f5f5f5;
+            border-left: 3px solid #667eea;
+            padding: 2px 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            color: #d63384;
+            border-radius: 3px;
+        }
+        
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        .code-block code {
+            background: none;
+            border: none;
+            padding: 0;
+            color: inherit;
+        }
+        
+        .note {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        
+        .step {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .step strong {
+            color: #667eea;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .icon {
+            margin-right: 8px;
+        }
+        
+        footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #eee;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Copilot CLI Guide</h1>
+            <p>Installation & Using py_command.py</p>
+        </header>
+        
+        <div class="content">
+            <!-- Section 1: Prerequisites -->
+            <section class="section">
+                <h2>📋 Prerequisites</h2>
+                <p>Before installing Copilot CLI, ensure you have the following:</p>
+                <ul>
+                    <li><strong>GitHub Account:</strong> A valid GitHub account with authentication configured</li>
+                    <li><strong>Git:</strong> Git installed on your system (<a href="https://git-scm.com/downloads" target="_blank">Download</a>)</li>
+                    <li><strong>GitHub CLI (gh):</strong> Version 2.5.0 or higher (<a href="https://cli.github.com/" target="_blank">Download</a>)</li>
+                    <li><strong>Python:</strong> Version 3.6+ installed for running py_command.py</li>
+                    <li><strong>Internet Connection:</strong> Required for authentication and API calls</li>
+                </ul>
+                <div class="note">
+                    <strong>💡 Note:</strong> The Copilot CLI extension works with the GitHub CLI (gh). Make sure gh is properly installed and authenticated.
+                </div>
+            </section>
+            
+            <!-- Section 2: Installation Steps -->
+            <section class="section">
+                <h2>📥 Installing Copilot CLI</h2>
+                
+                <h3>Step 1: Install GitHub CLI</h3>
+                <p>First, install the GitHub CLI if you haven't already:</p>
+                <div class="step">
+                    <strong>Windows (using Chocolatey):</strong>
+                </div>
+                <div class="code-block"><code>choco install gh</code></div>
+                
+                <div class="step">
+                    <strong>Windows (using Winget):</strong>
+                </div>
+                <div class="code-block"><code>winget install GitHub.cli</code></div>
+                
+                <div class="step">
+                    <strong>macOS:</strong>
+                </div>
+                <div class="code-block"><code>brew install gh</code></div>
+                
+                <div class="step">
+                    <strong>Linux:</strong>
+                </div>
+                <div class="code-block"><code>
+# For Ubuntu/Debian
+sudo apt-get install gh
+
+# For Fedora/RHEL
+sudo dnf install gh
+                </code></div>
+                
+                <h3>Step 2: Authenticate with GitHub</h3>
+                <p>Authenticate your GitHub account with the CLI:</p>
+                <div class="code-block"><code>gh auth login</code></div>
+                <p>Follow the prompts to authenticate. You'll be asked to:</p>
+                <ul>
+                    <li>Choose how you want to authenticate (HTTPS or SSH)</li>
+                    <li>Optionally paste an authentication token or use your browser</li>
+                    <li>Confirm your preferences</li>
+                </ul>
+                
+                <h3>Step 3: Install Copilot CLI Extension</h3>
+                <p>Install the Copilot extension for GitHub CLI:</p>
+                <div class="code-block"><code>gh extension install github/gh-copilot</code></div>
+                
+                <h3>Step 4: Verify Installation</h3>
+                <p>Test that Copilot CLI is installed correctly:</p>
+                <div class="code-block"><code>gh copilot --version</code></div>
+                <div class="success">
+                    <strong>✅ Success:</strong> You should see the version number displayed. Copilot CLI is now ready to use!
+                </div>
+            </section>
+            
+            <!-- Section 3: Using py_command.py -->
+            <section class="section">
+                <h2>🐍 Using py_command.py</h2>
+                
+                <h3>What is py_command.py?</h3>
+                <p>
+                    <code>py_command.py</code> is a Python wrapper script that executes shell commands (including <code>gh copilot</code> commands) 
+                    with enhanced features:
+                </p>
+                <ul>
+                    <li><strong>Output Logging:</strong> Captures all output to a log file for later review</li>
+                    <li><strong>Success Detection:</strong> Monitors output for a success keyword and terminates gracefully</li>
+                    <li><strong>Error Handling:</strong> Provides clear error messages when something goes wrong</li>
+                    <li><strong>Flexible Arguments:</strong> Supports custom commands and parameters via command-line arguments</li>
+                </ul>
+                
+                <h3>Basic Usage</h3>
+                <p>The script can be run in several ways:</p>
+                
+                <h4>1. Using Default Command</h4>
+                <p>Run with the built-in default command:</p>
+                <div class="code-block"><code>python py_command.py</code></div>
+                
+                <h4>2. Using a Custom Command</h4>
+                <p>Pass your own command as an argument:</p>
+                <div class="code-block"><code>python py_command.py "gh copilot suggest 'write a hello world function'"</code></div>
+                
+                <h4>3. Using Custom Parameters</h4>
+                <p>Specify custom success keyword or log file:</p>
+                <div class="code-block"><code>python py_command.py "your command" --success-keyword "complete" --log-file "my_log.txt"</code></div>
+                
+                <h3>Command-Line Arguments</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Argument</th>
+                            <th>Description</th>
+                            <th>Default</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>command</code></td>
+                            <td>The shell command to execute</td>
+                            <td>gh copilot command</td>
+                            <td><code>"gh copilot suggest ..."</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>--success-keyword</code></td>
+                            <td>Keyword to detect successful completion</td>
+                            <td>successfully</td>
+                            <td><code>--success-keyword "done"</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>--log-file</code></td>
+                            <td>Path to the log file</td>
+                            <td>command_output.log</td>
+                            <td><code>--log-file "results.log"</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Real-World Examples</h3>
+                
+                <h4>Example 1: Ask Copilot for Code Suggestions</h4>
+                <div class="code-block"><code>python py_command.py "gh copilot suggest 'create a Python function to reverse a string' --allow-all"</code></div>
+                
+                <h4>Example 2: Explain Code</h4>
+                <div class="code-block"><code>python py_command.py "gh copilot explain 'for i in range(10): print(i)' --allow-all"</code></div>
+                
+                <h4>Example 3: Custom Log File and Success Keyword</h4>
+                <div class="code-block"><code>python py_command.py "gh copilot suggest 'write a factorial function'" --success-keyword "explained" --log-file "copilot_results.log"</code></div>
+                
+                <h4>Example 4: Run Multiple Commands</h4>
+                <div class="code-block"><code>python py_command.py "gh copilot suggest 'validate email' --allow-all && echo Task completed"</code></div>
+            </section>
+            
+            <!-- Section 4: Copilot CLI Subcommands -->
+            <section class="section">
+                <h2>🎯 Available Copilot CLI Subcommands</h2>
+                
+                <h3>Main Subcommands</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Subcommand</th>
+                            <th>Purpose</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>suggest</code></td>
+                            <td>Get code suggestions for a problem</td>
+                            <td><code>gh copilot suggest "write a sorting algorithm"</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>explain</code></td>
+                            <td>Get explanation for code or concept</td>
+                            <td><code>gh copilot explain "map(lambda x: x*2, list)"</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>version</code></td>
+                            <td>Display the version of Copilot CLI</td>
+                            <td><code>gh copilot --version</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>help</code></td>
+                            <td>Show help information</td>
+                            <td><code>gh copilot --help</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>Common Flags</h3>
+                <ul>
+                    <li><code>--allow-all</code> - Allow all prompts without user confirmation</li>
+                    <li><code>-i, --input</code> - Provide input as an argument (non-interactive)</li>
+                    <li><code>--json</code> - Output in JSON format (if available)</li>
+                </ul>
+            </section>
+            
+            <!-- Section 5: Troubleshooting -->
+            <section class="section">
+                <h2>🔧 Troubleshooting</h2>
+                
+                <h3>Problem: Command Not Found</h3>
+                <div class="warning">
+                    <strong>⚠️ Issue:</strong> "gh: command not found" or "'gh' is not recognized"
+                </div>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Ensure GitHub CLI is installed correctly</li>
+                    <li>Add the gh installation directory to your system PATH</li>
+                    <li>Restart your terminal or command prompt</li>
+                    <li>Verify installation: <code>gh --version</code></li>
+                </ul>
+                
+                <h3>Problem: Authentication Failed</h3>
+                <div class="warning">
+                    <strong>⚠️ Issue:</strong> "Authentication failed" or "Not authenticated"
+                </div>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Run <code>gh auth login</code> to authenticate</li>
+                    <li>Ensure your GitHub account has access to Copilot</li>
+                    <li>Check your internet connection</li>
+                    <li>Try logging out and logging back in: <code>gh auth logout</code> then <code>gh auth login</code></li>
+                </ul>
+                
+                <h3>Problem: Extension Not Found</h3>
+                <div class="warning">
+                    <strong>⚠️ Issue:</strong> "Extension 'copilot' not found"
+                </div>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Reinstall the extension: <code>gh extension install github/gh-copilot</code></li>
+                    <li>Check for updates: <code>gh extension upgrade github/gh-copilot</code></li>
+                    <li>Verify Copilot subscription on your GitHub account</li>
+                </ul>
+                
+                <h3>Problem: Python Script Not Running</h3>
+                <div class="warning">
+                    <strong>⚠️ Issue:</strong> "Python not found" or script errors
+                </div>
+                <p><strong>Solution:</strong></p>
+                <ul>
+                    <li>Ensure Python 3.6+ is installed: <code>python --version</code></li>
+                    <li>Use <code>python3</code> if <code>python</code> doesn't work</li>
+                    <li>Check the script permissions and encoding</li>
+                    <li>Review the log file for detailed error messages</li>
+                </ul>
+            </section>
+            
+            <!-- Section 6: Tips & Best Practices -->
+            <section class="section">
+                <h2>💡 Tips & Best Practices</h2>
+                
+                <h3>Effective Query Tips</h3>
+                <ul>
+                    <li><strong>Be Specific:</strong> Provide clear, detailed descriptions of what you need</li>
+                    <li><strong>Include Context:</strong> Mention the programming language and framework if relevant</li>
+                    <li><strong>Provide Examples:</strong> Show examples of input and expected output when possible</li>
+                    <li><strong>Iterative Refinement:</strong> Ask follow-up questions to refine responses</li>
+                </ul>
+                
+                <h3>Script Usage Best Practices</h3>
+                <ul>
+                    <li><strong>Use Meaningful Log Files:</strong> Name log files descriptively for easy tracking</li>
+                    <li><strong>Custom Success Keywords:</strong> Use relevant keywords that indicate completion for your use case</li>
+                    <li><strong>Test Thoroughly:</strong> Test commands manually before automating with the script</li>
+                    <li><strong>Monitor Logs:</strong> Review log files to understand how Copilot is responding</li>
+                </ul>
+                
+                <h3>Performance Tips</h3>
+                <ul>
+                    <li>Use <code>--allow-all</code> flag to skip prompts in batch operations</li>
+                    <li>Keep queries focused and concise for faster responses</li>
+                    <li>Batch similar requests together to save time</li>
+                </ul>
+            </section>
+            
+            <!-- Section 7: Additional Resources -->
+            <section class="section">
+                <h2>📚 Additional Resources</h2>
+                
+                <h3>Official Documentation</h3>
+                <ul>
+                    <li><a href="https://cli.github.com/" target="_blank">GitHub CLI Official Site</a></li>
+                    <li><a href="https://github.com/github/gh-copilot" target="_blank">GitHub Copilot CLI Repository</a></li>
+                    <li><a href="https://docs.github.com/en/copilot" target="_blank">GitHub Copilot Documentation</a></li>
+                </ul>
+                
+                <h3>Getting Help</h3>
+                <ul>
+                    <li>Get help for any command: <code>gh copilot --help</code></li>
+                    <li>Check GitHub Copilot status: <a href="https://github.com/github/gh-copilot/issues" target="_blank">Issues on GitHub</a></li>
+                    <li>Join GitHub Community: <a href="https://github.com/community" target="_blank">GitHub Community Forum</a></li>
+                </ul>
+            </section>
+            
+            <!-- Section 8: Quick Reference -->
+            <section class="section">
+                <h2>⚡ Quick Reference</h2>
+                
+                <h3>Essential Commands</h3>
+                <div class="code-block"><code>
+# Verify gh is installed
+gh --version
+
+# Login to GitHub
+gh auth login
+
+# Install Copilot extension
+gh extension install github/gh-copilot
+
+# Verify Copilot is installed
+gh copilot --version
+
+# Run py_command.py with default settings
+python py_command.py
+
+# Run with custom command
+python py_command.py "gh copilot suggest 'your request'"
+
+# Run with all options
+python py_command.py "gh copilot suggest 'code'" --success-keyword "done" --log-file "output.log"
+                </code></div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>📖 Copilot CLI Installation & py_command.py Usage Guide</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Last Updated: April 2026 | For more information, visit the <a href="https://github.com/github/gh-copilot" target="_blank">GitHub Copilot CLI Repository</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+python D:\workspace\co-pilot-cli\py_command.py "gh copilot -i \"who are u in 20 words. Print program copilot executed successfully\" --allow-all"
